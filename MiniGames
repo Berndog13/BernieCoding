@@ -1,0 +1,55 @@
+package portfolio;
+
+import java.util.*;
+
+public class MiniGames extends Portfolio {
+	static Scanner input = new Scanner(System.in);
+
+	public static void main(String[] args) throws InterruptedException {
+		miniGame();
+
+	}
+
+	public static void miniGame() throws InterruptedException {
+		System.out.println();
+		System.out.println();
+		System.out.println("The next part of the game is a series of 3 mini questions that can win you some money.");
+		Thread.sleep(1000);
+		System.out.println("Once you make an incorrect decision though, the game moves on");
+		Thread.sleep(1000);
+		System.out.println("One day, Barack Obama comes up to you and offers $300. Do you take it 'y or n'");
+		String chc = input.nextLine();
+		if (chc.equals("n")) {
+			System.out.println("Okay! Moving on then");
+		} else if (chc.equals("y")) {
+			OverallMoney = OverallMoney + 300;
+			System.out.println("Nice choice! You're new bank total is now: $" + OverallMoney);
+			Thread.sleep(1000);
+			System.out.println(
+					"The next day you have an oppurtunity to do some minute trading, it's risky but has potential");
+			System.out.println("Do you want to give it a go? 'y or n'");
+			String minutetrade = input.nextLine();
+			if (minutetrade.equals("n")) {
+				System.out.println("You missed a good oppurtunity!");
+			} else if (minutetrade.equals("y")) {
+				OverallMoney = OverallMoney + 674;
+				System.out.println("Nice choice! You made $674. You're new bank total is now: $" + OverallMoney);
+				Thread.sleep(1000);
+				System.out
+						.println("An investment banker says he has an oppurtunity for you. Do you take it? 'y or n'?");
+				String choice2 = input.nextLine();
+				if (choice2.equals("y")) {
+					OverallMoney = OverallMoney - 489;
+					System.out.println(
+							"Wrong choice! This time it has consequences. You lost $489. Your new bank total is: $"
+									+ OverallMoney);
+				} else if (choice2.equals("n")) {
+					System.out.println("Great Choice. Your money remains at: $" + OverallMoney);
+
+				}
+
+			}
+		}
+
+	}
+}
