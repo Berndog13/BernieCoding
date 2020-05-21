@@ -81,7 +81,7 @@ public class Trading extends Portfolio {
 								} if (buyShares > 0) {
 									System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
 								
-								} else {
+								} else if (SharesLeft == 0){
 									System.out.println("Okay, moving on then!");
 									System.out.println("Your total is now " + OverallMoney);
 									break;
@@ -95,4 +95,3 @@ public class Trading extends Portfolio {
 		}
 	}
 }
-
