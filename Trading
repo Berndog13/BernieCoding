@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Trading extends Portfolio {
 	static Scanner input = new Scanner(System.in);
+	static double sellShares;
+	static double SharesLeft;
 
 	public static void main(String[] args) throws InterruptedException {
 		createStock();
@@ -25,8 +27,6 @@ public class Trading extends Portfolio {
 				+ ". The current stock price is $" + dow1.getbeginStockValue() + ".");
 		Thread.sleep(1250);
 
-
-
 	}
 
 	public static void money() throws InterruptedException {
@@ -40,7 +40,7 @@ public class Trading extends Portfolio {
 
 		while (loop) {
 			System.out.println("Would you like to buy Tesla @ $750? 'y or n'");
-			String pick = input.nextLine();
+			String pick = input.next();
 			if (pick.equals("n")) {
 				System.out.println("Okay, moving on then!");
 				loop = false;
@@ -66,27 +66,23 @@ public class Trading extends Portfolio {
 						if (choice.equals("y")) {
 							System.out.println("How many shares would you like to sell?");
 							sellShares = input.nextDouble();
-							buyShares = buyShares - sellShares;
-							if (sellShares < buyShares) {
-								System.out.println("That ain't possible!");
+							SharesLeft = buyShares - sellShares;
+							if (SharesLeft < 0) {
+								System.out.println("That's not possible! You don't even have that many shares!");
 							} else {
 								YourMoney = (Tesla * buyShares);
-								if (sellShares < sharesLeft) {
-									System.out.println("That's not possible! You don't even have that many shares!");
-									break;
-								} else {
 
-									if (buyShares > 0) {
-										System.out.println("You have " + buyShares + " shares remaining in Tesla");
-
-									} else {
-										System.out.println("Okay, moving on then!");
-										System.out.println("Your total is now " + OverallMoney);
-
-									}
-
-								}
 							}
+
+							if (buyShares > 0) {
+								System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
+
+							} else {
+								System.out.println("Okay, moving on then!");
+								System.out.println("Your total is now " + OverallMoney);
+
+							}
+
 						}
 					}
 				}
