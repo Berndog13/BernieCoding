@@ -54,7 +54,7 @@ public class Trading extends Portfolio {
 				} else {
 					System.out.println(
 							"After purchasing " + buyShares + " shares of Tesla. Your new total is: " + OverallMoney);
-					for (int i = 0; i < 5; i++) {
+					while (buyShares > SharesLeft) {
 						TeslaRate = RNG.nextInt(10 + 10 + 1) - 10;
 						Tesla = Tesla + TeslaRate;
 						System.out.println("The Tesla stock has moved and is now: " + Tesla);
@@ -63,23 +63,28 @@ public class Trading extends Portfolio {
 						System.out.println("Would you like to sell part of Tesla? Y or n?");
 						TeslaBefore = Tesla;
 						String choice = input.next();
-						if (choice.equals("y")) {
+						
+						if (choice.equals("n")) {
+							YourMoney = (Tesla * SharesLeft);
+							System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
+							
+						} else if (choice.equals("y")) {
 							System.out.println("How many shares would you like to sell?");
 							sellShares = input.nextDouble();
 							SharesLeft = buyShares - sellShares;
+					
 							if (SharesLeft < 0) {
 								System.out.println("That's not possible! You don't even have that many shares!");
 							} else {
-								YourMoney = (Tesla * buyShares);
+								YourMoney = (Tesla * SharesLeft);
 
-							}
-
-							if (buyShares > 0) {
-								System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
-
-							} else {
-								System.out.println("Okay, moving on then!");
-								System.out.println("Your total is now " + OverallMoney);
+								} if (buyShares > 0) {
+									System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
+								
+								} else {
+									System.out.println("Okay, moving on then!");
+									System.out.println("Your total is now " + OverallMoney);
+									break;
 
 							}
 
@@ -90,3 +95,4 @@ public class Trading extends Portfolio {
 		}
 	}
 }
+
