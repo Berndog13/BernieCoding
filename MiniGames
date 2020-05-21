@@ -47,6 +47,7 @@ public class MiniGames extends Portfolio {
 							"Wrong choice! This time it has consequences. You lost $489. Your new bank total is: $"
 									+ madeMoney);
 				} else if (choice2.equals("n")) {
+					madeMoney = madeMoney;
 					System.out.println("Good choice. The banker turned out to be a scam! During this minigame, you made: $" + madeMoney);
 
 				}
