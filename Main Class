@@ -7,16 +7,33 @@ import java.util.*;
 public class Portfolio {
 	static Scanner input = new Scanner(System.in);
 	static double OverallMoney = 10000;
-	static double buyShares, sellShares, YourMoney, sharesLeft;
+	static double buyShares;
+	static double sellShares;
+	static double YourMoney;
+	static double sharesLeft;
 
 	public static void main(String[] args) throws InterruptedException {
 		welcome();
-		Trading.createStock();
-		Trading.money();
-		BeatTheCrash.dialouge();
-		BeatTheCrash.intro();
-		BeatTheCrash.game();
-		MiniGames.miniGame();
+		System.out.println("Please select which minigame you would like to go to:");
+		System.out.println("1- Stock Trade");
+		System.out.println("2- BeatTheCrash");
+		System.out.println("3- Questions/Quick Rewards");
+		int gamePick = input.nextInt();
+
+		if (gamePick == 1) {
+			Trading.createStock();
+			Trading.money();
+		}
+
+		if (gamePick == 2) {
+			BeatTheCrash.dialouge();
+			BeatTheCrash.intro();
+			BeatTheCrash.game();
+
+		}
+
+		if (gamePick == 3)
+			MiniGames.miniGame();
 		finishGame();
 
 	}
