@@ -5,6 +5,7 @@ import java.util.*;
 public class Trading extends Portfolio {
 	static Scanner input = new Scanner(System.in);
 	static double sellShares;
+	static double buyShares;
 	static double SharesLeft;
 
 	public static void main(String[] args) throws InterruptedException {
@@ -39,52 +40,55 @@ public class Trading extends Portfolio {
 		OverallMoney = 10000;
 
 		while (loop) {
+			System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
 			System.out.println("Would you like to buy Tesla @ $750? 'y or n'");
 			String pick = input.next();
 			if (pick.equals("n")) {
 				System.out.println("Okay, moving on then!");
 				loop = false;
 			} else {
-				System.out.println("How many shares of Tesla would you like to buy?");
-				buyShares = input.nextDouble();
+				System.out.println("You now have 10 shares of Tesla");
+				buyShares = 10;
 				OverallMoney = OverallMoney + (buyShares * (Tesla - 750));
-				if (OverallMoney > 10000) {
+				if (OverallMoney < 10000) {
 					System.out.println("Try Again");
 					break;
 				} else {
 					System.out.println(
 							"After purchasing " + buyShares + " shares of Tesla. Your new total is: " + OverallMoney);
-					while (buyShares > SharesLeft) {
+					while (true) {
+						SharesLeft = buyShares - sellShares;
 						TeslaRate = RNG.nextInt(10 + 10 + 1) - 10;
 						Tesla = Tesla + TeslaRate;
 						System.out.println("The Tesla stock has moved and is now: " + Tesla);
-						OverallMoney = OverallMoney + (buyShares * (Tesla - (TeslaBefore)));
+						OverallMoney = OverallMoney + (SharesLeft * (Tesla - (TeslaBefore)));
 						System.out.println("Your overall total comes to: " + OverallMoney);
 						System.out.println("Would you like to sell part of Tesla? Y or n?");
 						TeslaBefore = Tesla;
 						String choice = input.next();
-						
+						SharesLeft = buyShares - sellShares;
 						if (choice.equals("n")) {
-							YourMoney = (Tesla * SharesLeft);
+							OverallMoney = (Tesla * SharesLeft);
 							System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
-							
+
 						} else if (choice.equals("y")) {
 							System.out.println("How many shares would you like to sell?");
 							sellShares = input.nextDouble();
 							SharesLeft = buyShares - sellShares;
-					
 							if (SharesLeft < 0) {
 								System.out.println("That's not possible! You don't even have that many shares!");
 							} else {
 								YourMoney = (Tesla * SharesLeft);
 
-								} if (buyShares > 0) {
-									System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
+							}
+							if (buyShares > 0) {
+								System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
+								buyShares = SharesLeft;
 								
-								} else if (SharesLeft == 0){
-									System.out.println("Okay, moving on then!");
-									System.out.println("Your total is now " + OverallMoney);
-									break;
+							} else if (SharesLeft == 0) {
+								System.out.println("Okay, moving on then!");
+								System.out.println("Your total is now " + OverallMoney);
+								break;
 
 							}
 
