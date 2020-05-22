@@ -4,7 +4,6 @@ import java.util.*;
 
 public class MiniGames extends Portfolio {
 	static Scanner input = new Scanner(System.in);
-	static double madeMoney;
 
 	public static void main(String[] args) throws InterruptedException {
 		miniGame();
@@ -21,37 +20,37 @@ public class MiniGames extends Portfolio {
 		System.out.println("One day, Barack Obama comes up to you and offers $300. Do you take it 'y or n'");
 		String chc = input.nextLine();
 		if (chc.equals("n")) {
-			double madeMoney = OverallMoney - 10000;
-			System.out.println("Wrong choice! Minigame over! You made $" + madeMoney + " from this minigame.");
+			System.out.println("Wrong choice! Minigame over! You made $" + 0 + " from this minigame.");
 		} else if (chc.equals("y")) {
-			OverallMoney = OverallMoney + 300;
-			double madeMoney = OverallMoney - 10000;
-			System.out.println("Nice choice! So far this game you've made: $" + madeMoney);
+			mgMoney = 300;
+			System.out.println("Nice choice! So far this game you've made: $" + mgMoney);
 			Thread.sleep(1000);
 			System.out.println(
 					"The next day you have an oppurtunity to do some minute trading, it's risky but has potential");
 			System.out.println("Do you want to give it a go? 'y or n'");
 			String minutetrade = input.nextLine();
 			if (minutetrade.equals("n")) {
-				System.out.println("You missed a good oppurtunity! You made $ " + madeMoney + " from this minigame.");
+				System.out.println("You missed a good oppurtunity! You made $ " + mgMoney + " from this minigame.");
 			} else if (minutetrade.equals("y")) {
-				madeMoney = madeMoney + 674;
-				System.out.println("Nice choice! You made $674. From this minigame, you've now made: $" + madeMoney);
+				mgMoney = mgMoney + 674;
+				System.out.println("Nice choice! You made $674. From this minigame, you've now made: $" + mgMoney);
 				Thread.sleep(1000);
 				System.out
 						.println("An investment banker says he has an oppurtunity for you. Do you take it? 'y or n'?");
 				String choice2 = input.nextLine();
 				if (choice2.equals("y")) {
-					madeMoney = madeMoney - 489;
+					mgMoney = mgMoney - 489;
 					System.out.println(
 							"Wrong choice! This time it has consequences. You lost $489. Your new bank total is: $"
-									+ madeMoney);
+									+ mgMoney);
 				} else if (choice2.equals("n")) {
-					madeMoney = madeMoney;
-					System.out.println("Good choice. The banker turned out to be a scam! During this minigame, you made: $" + madeMoney);
+					System.out.println(
+							"Good choice. The banker turned out to be a scam! During this minigame, you made: $"
+									+ mgMoney);
 
 				}
 				
+				madeMoney = mgMoney;
 			}
 		}
 
