@@ -40,7 +40,6 @@ public class Trading extends Portfolio {
 		OverallMoney = 10000;
 
 		while (loop) {
-			System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
 			System.out.println("Would you like to buy Tesla @ $750? 'y or n'");
 			String pick = input.next();
 			if (pick.equals("n")) {
@@ -67,6 +66,7 @@ public class Trading extends Portfolio {
 						TeslaBefore = Tesla;
 						String choice = input.next();
 						SharesLeft = buyShares - sellShares;
+
 						if (choice.equals("n")) {
 							OverallMoney = (Tesla * SharesLeft);
 							System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
@@ -77,21 +77,22 @@ public class Trading extends Portfolio {
 							SharesLeft = buyShares - sellShares;
 							if (SharesLeft < 0) {
 								System.out.println("That's not possible! You don't even have that many shares!");
+								System.out.println(
+										"This is fraud and you got caught by the CRA. You cannot make anymore money off this Tesla investment.");
+								System.out.println("Your Overall Money ends this minigame at: $" + OverallMoney);
+								break;
+
 							} else {
 								YourMoney = (Tesla * SharesLeft);
 
 							}
-							if (buyShares > 0) {
-								System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
-								buyShares = SharesLeft;
-								
-							} else if (SharesLeft == 0) {
+							if (SharesLeft == 0) {
 								System.out.println("Okay, moving on then!");
 								System.out.println("Your total is now " + OverallMoney);
 								break;
 
 							}
-
+							break;
 						}
 					}
 				}
