@@ -11,6 +11,10 @@ public class Portfolio {
 	static double sellShares;
 	static double YourMoney;
 	static double sharesLeft;
+	static double gainMoney;
+	static double moneyMade;
+	static double madeMoney;
+	static double mgMoney;
 
 	public static void main(String[] args) throws InterruptedException {
 		welcome();
@@ -18,23 +22,33 @@ public class Portfolio {
 		System.out.println("1- Stock Trade");
 		System.out.println("2- BeatTheCrash");
 		System.out.println("3- Questions/Quick Rewards");
+		System.out.println("4- End Game");
 		int gamePick = input.nextInt();
 
 		if (gamePick == 1) {
 			Trading.createStock();
 			Trading.money();
+			gameContinue();
 		}
 
 		if (gamePick == 2) {
 			BeatTheCrash.dialouge();
 			BeatTheCrash.intro();
 			BeatTheCrash.game();
+			gameContinue();
 
 		}
 
-		if (gamePick == 3)
+		if (gamePick == 3) {
 			MiniGames.miniGame();
-		finishGame();
+			gameContinue();
+
+		}
+
+		if (gamePick == 4) {
+			complete();
+
+		}
 
 	}
 
@@ -54,7 +68,47 @@ public class Portfolio {
 		Thread.sleep(1250);
 	}
 
-	private static void finishGame() throws InterruptedException {
+	private static void gameContinue() throws InterruptedException {
+		System.out.println("Your overall money is now: $" + OverallMoney);
+		System.out.println("Please select which minigame you would like to go to:");
+		System.out.println("1- Stock Trade");
+		System.out.println("2- BeatTheCrash");
+		System.out.println("3- Questions/Quick Rewards");
+		System.out.println("4- End Game");
+		int classPick = input.nextInt();
+
+		if (classPick == 1) {
+			Trading.createStock();
+			Trading.money();
+			if (gainMoney > 0) {
+				OverallMoney = OverallMoney + gainMoney;
+			} else if (gainMoney < 0) {
+				OverallMoney = OverallMoney - gainMoney;
+
+				gameContinue();
+			}
+
+			if (classPick == 2) {
+				BeatTheCrash.dialouge();
+				BeatTheCrash.intro();
+				BeatTheCrash.game();
+				OverallMoney = OverallMoney + OverallMoney;
+				OverallMoney = OverallMoney - gainMoney;
+				gameContinue();
+
+			}
+
+			if (classPick == 3)
+				MiniGames.miniGame();
+			complete();
+			OverallMoney = OverallMoney + mgMoney;
+			OverallMoney = OverallMoney - gainMoney;
+			gameContinue();
+
+		}
+	}
+
+	private static void complete() throws InterruptedException {
 		System.out.println("You have made it to the end of the game!");
 		System.out.println("You finished the game with: $" + OverallMoney);
 		Thread.sleep(1250);
