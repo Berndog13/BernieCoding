@@ -69,7 +69,7 @@ public class Trading extends Portfolio {
 						TeslaBefore = Tesla;
 						String choice = input.next();
 						SharesLeft = buyShares - sellShares;
-
+						
 						if (choice.equals("n")) {
 							tradeCash = (Tesla * SharesLeft);
 							System.out.println("You have " + SharesLeft + " shares remaining in Tesla");
@@ -114,3 +114,5 @@ public class Trading extends Portfolio {
 			}
 		}
 	}
+
+
