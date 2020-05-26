@@ -15,6 +15,7 @@ public class Portfolio {
 	static double moneyMade;
 	static double madeMoney;
 	static double mgMoney;
+	static double beatTheCrash, Total;
 
 	public static void main(String[] args) throws InterruptedException {
 		welcome();
@@ -28,6 +29,7 @@ public class Portfolio {
 		if (gamePick == 1) {
 			Trading.createStock();
 			Trading.money();
+			overallMoneyCalc();
 			gameContinue();
 		}
 
@@ -35,17 +37,20 @@ public class Portfolio {
 			BeatTheCrash.dialouge();
 			BeatTheCrash.intro();
 			BeatTheCrash.game();
+			overallMoneyCalc();
 			gameContinue();
 
 		}
 
 		if (gamePick == 3) {
-			MiniGames.miniGame();
+			MiniGames.job();
+			overallMoneyCalc();
 			gameContinue();
 
 		}
 
 		if (gamePick == 4) {
+			overallMoneyCalc();
 			complete();
 
 		}
@@ -53,23 +58,27 @@ public class Portfolio {
 	}
 
 	// Creating welcome message, with delayed prompt
+	private static void overallMoneyCalc() throws InterruptedException {
+		OverallMoney = mgMoney + gainMoney + Total;
+		System.out.println("Your Overall Total is now: $" + OverallMoney);
+	}
+
 	private static void welcome() throws InterruptedException {
 		System.out.println("Welcome to your Stock Market Portfolio");
 		Thread.sleep(1500);
-		System.out.println("The program simulates the stock market, where you get to create your own portfolio");
+		System.out.println("The program has 3 different mini-games, pertaining to the stock market");
 		Thread.sleep(2000);
-		System.out.println("There is a whole bunch of mini games to play");
+		System.out.println("Your money earned from each mini game will be tallied under 'Overall Money'");
 		Thread.sleep(1250);
-		System.out.println("With the goal of increasing your 'Overall Money' as you go!");
+		System.out.println("But after you play a game once, you can only beat your score");
 		Thread.sleep(1250);
-		System.out.println("The money you earn from one mini game, gets added to the overall total");
+		System.out.println("The money doesn't keep totalling");
 		Thread.sleep(1250);
-		System.out.println("Which begins at $10, 000");
+		System.out.println("Good luck!");
 		Thread.sleep(1250);
 	}
 
 	private static void gameContinue() throws InterruptedException {
-		System.out.println("Your overall money is now: $" + OverallMoney);
 		System.out.println("Please select which minigame you would like to go to:");
 		System.out.println("1- Stock Trade");
 		System.out.println("2- BeatTheCrash");
@@ -80,32 +89,25 @@ public class Portfolio {
 		if (classPick == 1) {
 			Trading.createStock();
 			Trading.money();
-			if (gainMoney > 0) {
-				OverallMoney = OverallMoney + gainMoney;
-			} else if (gainMoney < 0) {
-				OverallMoney = OverallMoney - gainMoney;
+			overallMoneyCalc();
+			gameContinue();
+		}
 
-				gameContinue();
-			}
-
-			if (classPick == 2) {
-				BeatTheCrash.dialouge();
-				BeatTheCrash.intro();
-				BeatTheCrash.game();
-				OverallMoney = OverallMoney + OverallMoney;
-				OverallMoney = OverallMoney - gainMoney;
-				gameContinue();
-
-			}
-
-			if (classPick == 3)
-				MiniGames.miniGame();
-			complete();
-			OverallMoney = OverallMoney + mgMoney;
-			OverallMoney = OverallMoney - gainMoney;
+		if (classPick == 2) {
+			BeatTheCrash.dialouge();
+			BeatTheCrash.intro();
+			BeatTheCrash.game();
+			overallMoneyCalc();
 			gameContinue();
 
 		}
+
+		if (classPick == 3)
+			MiniGames.job();
+		complete();
+		overallMoneyCalc();
+		gameContinue();
+
 	}
 
 	private static void complete() throws InterruptedException {
@@ -119,5 +121,6 @@ public class Portfolio {
 			System.out.println("Better luck next time! You lost money this game!");
 			System.out.println("Play again, and try to beat that score!");
 		}
+
 	}
 }
