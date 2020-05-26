@@ -3,15 +3,39 @@ package portfolio;
 import java.util.*;
 
 public class MiniGames extends Portfolio {
-	static Scanner input = new Scanner(System.in);
+	public static Scanner input = new Scanner(System.in);
+	public static ArrayList<String> jobList = new ArrayList<String>();
+	public static String job1;
+	public static String job2;
+	public static String job3;
+	public static String jobPick;
 
 	public static void main(String[] args) throws InterruptedException {
-		miniGame();
+		job();
+		
 
 	}
 
-	public static void miniGame() throws InterruptedException {
-		System.out.println();
+	public static void job() throws InterruptedException {
+		System.out.println("You can get 3 different jobs: barber, banker or salesman");
+		jobList.add("Barber");
+		jobList.add("Banker");
+		jobList.add("Salesman");
+
+		System.out.println("Pick a number between 1 and 3 to decide what job you have. If none are chosen, you will be unemployed whihc has no losses or rewards.");
+		String jobPick = input.nextLine();
+
+		if (jobPick.equals("1")) {
+			System.out.println("You have chosen: " + jobList.get(0));
+
+		} else if (jobPick.equals("2")) {
+			System.out.println("You have chosen: " + jobList.get(1));
+
+		}
+		if (jobPick.equals("3")) {
+			System.out.println("You have chosen: " + jobList.get(2));
+		}
+
 		System.out.println();
 		System.out.println("The next part of the game is a series of 3 mini questions that can win you some money.");
 		Thread.sleep(1000);
@@ -39,20 +63,28 @@ public class MiniGames extends Portfolio {
 						.println("An investment banker says he has an oppurtunity for you. Do you take it? 'y or n'?");
 				String choice2 = input.nextLine();
 				if (choice2.equals("y")) {
-					mgMoney = mgMoney - 489;
-					System.out.println(
-							"Wrong choice! This time it has consequences. You lost $489. Your new bank total is: $"
-									+ mgMoney);
-				} else if (choice2.equals("n")) {
-					System.out.println(
-							"Good choice. The banker turned out to be a scam! During this minigame, you made: $"
-									+ mgMoney);
-
-				}
+					if (jobPick.equals("1")) {
+						System.out.println("Because you are a barber, you cut the hair for this man and even though he is a scammer, you get off the hook!");
+						mgMoney = mgMoney + 0;
+						System.out.println("You lost nothing, but if you chose a different job it would have been (-$489). You ended this mini-game with: " + mgMoney);
+					} else {
+						mgMoney = mgMoney - 489;
+						System.out.println(
+								"Wrong choice! This time it has consequences. You lost $489. Your new bank total is: $"
+										+ mgMoney);
+					}
 				
-				madeMoney = mgMoney;
+				} else if (choice2.equals("n")) {
+						System.out.println(
+								"Good choice. The banker turned out to be a scam! During this minigame, you made: $"
+										+ mgMoney);
+
+					}
+
+					madeMoney = mgMoney;
+				
+				}
 			}
 		}
 
 	}
-}
