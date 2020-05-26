@@ -11,7 +11,7 @@ public class BeatTheCrash extends Portfolio {
 		game();
 	}
 		
-		public static void intro() throws InterruptedException {
+		public static void intro() throws InterruptedException { // Intro after dialouge and showcases the different levels of achivements you can reach
 			System.out.println("\nWelcome to the Stock Market mini game BEAT THE CRASH!");
 			Thread.sleep(2000);
 			System.out.println("Your Goal is to gety as much money as you can before the market CRASHES");
@@ -32,7 +32,7 @@ public class BeatTheCrash extends Portfolio {
 			System.out.println("KING! =5,000,000+");
 			Thread.sleep(5000);
 			}
-		public static void dialouge() throws InterruptedException {
+		public static void dialouge() throws InterruptedException { // Dialouge at the begining of the game
 			System.out.println("\nIt's the roaring twenty's (2020's) and you bump into your pal Jared on the street");
 			Thread.sleep(2000);
 			System.out.println("\nYou: Jared how you do ol' sport");
@@ -51,7 +51,7 @@ public class BeatTheCrash extends Portfolio {
 			Thread.sleep(2000);
 			System.out.println("\nJared: It's an app where kids dreams live and die");
 			Thread.sleep(2000);
-			System.out.println("\nJared: An app where dancing or making fun of skinny white dudes who say the n word\ncan get you famous ");
+			System.out.println("\nJared: An app where dancing or cracking jokes can get you famous ");
 			Thread.sleep(3000);
 			System.out.println("\nYou: You don't mean...");
 			Thread.sleep(2000);
@@ -65,80 +65,91 @@ public class BeatTheCrash extends Portfolio {
 		
 		public static void game() throws InterruptedException {
 			Random RNG = new Random();
-			int money, crash, moneygain,i;
-			String choice;
+			int money, crash, moneygain,i; // Variables
+			String choice; 
 			i = 0;
-			money = RNG.nextInt(100000 - 10000 + 1) + 10000;
-			crash = RNG.nextInt(25 - 3 + 1) + 3;
+			money = RNG.nextInt(100000 - 10000 + 1) + 10000; // Randomizes how much money you can gain or lose
+			crash = RNG.nextInt(25 - 3 + 1) + 3; // decides on what turn the crash will happen
 			System.out.println("\nTik Tok's Stock has became public and you are invested in it");
 			System.out.println("\nHere is your how much you currently have $" + money);
 			
 			for (int j = 0; j < 100; j++) {
-			if ( i < crash) {
-				System.out.println("Would you like to keep your money or keep playing the market?\nEnter keep or play");
+			if ( i < crash) { // System that occurs before the crash
+				System.out.println("Would you like to keep your money or keep playing the market?\nEnter keep or play"); // ask users if they'd like to keep playing or keep their money
 				choice = input.nextLine();
-			if (choice.equals("play")) {
-				moneygain = RNG.nextInt(100000 + 10000 + 1) - 10000;
-				money = money + moneygain;
+			if (choice.equals("play")) { // If they choose to keep playing this system will play
+				moneygain = RNG.nextInt(100000 + 10000 + 1) - 10000;// Randomizes how much money you can gain or lose
+				money = money + moneygain; // adds the randomized amount of money to their overall money
 				i++;
 				System.out.println("Your value went to $" + money);
 			if(money <= 0) {
 				System.out.println("You went BANKRUPT!\nGAME OVER!");
+				Total = money;
 			break;
 			}
 			}
 			else {
-					System.out.println("You have decided to keep your money");
+					System.out.println("You have decided to keep your money"); // System followed if user wants to keep their money and below prints out their money and what level they achived
 					System.out.println("Your final total came to $" + money);
 					if (money <= 0) {
 						System.out.println("\nYour status is: BANKRUPT!");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					if (0 <= money & money <= 10000) {
 						System.out.println("\nYour status is: Loser!");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					if (10001 <= money & money <= 30000) {
 						System.out.println("\nYour status is: Nick GotCarriedAway");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					if (30001 <= money & money <= 60000 ) {
 						System.out.println("\nYour status is: Mark Suckerberg");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					if (60001 <= money & money <= 100000) {
 						System.out.println("\nYour status is: Walrus Of Wall Street ");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					if (100001 <= money & money <= 200000) {
 						System.out.println("\nYour status is: Decent Ol'Sport");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					
 					if (200001 <= money & money <= 500000) {
 						System.out.println("\nYour status is: Eli Manning of stocks");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					if (500001 <= money & money <= 1000000) {
 						System.out.println("\nYour status is: Tomas from the hype house wants to rip 30% of your contract");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					if (1000001 <= money & money <= 5000000) {
 						System.out.println("\nYour status is: Girls will take you over John B");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					if (5000000 >= money ) {
 						System.out.println("\nYour status is: KING!");
 						System.out.println("GAME OVER!");
+						Total = money;
 						break;
 					}
 					
@@ -146,75 +157,89 @@ public class BeatTheCrash extends Portfolio {
 			}
 					}
 			for (int k = 0; k < 100; k++) {
-				if ( i >= crash) {
+				if ( i >= crash) { // System followed once the crash number occurs
 					System.out.println("Would you like to keep your money or keep playing the market?\nEnter keep or play");
 					choice = input.nextLine();
 				if (choice.equals("play")) {
-					moneygain = RNG.nextInt(10000 + 500000 + 1) - 500000;
+					moneygain = RNG.nextInt(10000 + 500000 + 1) - 500000; //randomizes the number the user will lose
 					money = money + moneygain;
 					i++;
 					System.out.println("Your value went to $" + money);
 					if(money <= 0) {
 						System.out.println("You went BANKRUPT!\nGAME OVER!");
+						Total = money;
 					break;
 					}
 				}
-					else {
+					else { // System followed if user wants to keep their money and below prints out their money and what level they achived
 						System.out.println("You have decided to keep your money");
 						System.out.println("Your final total came to $" + money);
 						if (money <= 0) {
 							System.out.println("\nYour status is: BANKRUPT!");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						if (0 <= money & money <= 10000) {
 							System.out.println("\nYour status is: Loser!");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						if (10001 <= money & money <= 30000) {
 							System.out.println("\nYour status is: Nick GotCarriedAway");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						if (30001 <= money & money <= 60000 ) {
 							System.out.println("\nYour status is: Mark Suckerberg");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						if (60001 <= money & money <= 100000) {
 							System.out.println("\nYour status is: Walrus Of Wall Street ");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						if (100001 <= money & money <= 200000) {
 							System.out.println("\nYour status is: Decent Ol'Sport");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						
 						if (200001 <= money & money <= 500000) {
 							System.out.println("\nYour status is: Eli Manning of stocks");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						if (500001 <= money & money <= 1000000) {
 							System.out.println("\nYour status is: Tomas from the hype house wants to rip 30% of your contract");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						if (1000001 <= money & money <= 5000000) {
 							System.out.println("\nYour status is: Girls will take you over John B");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
 						if (5000000 >= money ) {
 							System.out.println("\nYour status is: KING!");
 							System.out.println("GAME OVER!");
+							Total = money;
 							break;
 						}
+						
+						beatTheCrash = Total;
 					}
 				}
 			}
 			}
 		}
+	
